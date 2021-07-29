@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+
+
+    <div class="container" id="cont">
+        <h1>Cricket 10</h1>
+
+        <div class="row">
+            <div class="col-5" id="team1area">
+                <div class="row">
+                    <h1>Team 1 </h1>
+                    <h1>0</h1>
+                    <button class="btn btn-primary" id="hitbtn1">HIT-1</button>
+
+                </div>
+
+                <div class="row">
+
+                    <h1>Team 1 ScorBoard </h1>
+
+                    <div class="table-responsive">
+                        <table class="table" id="team1tale">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Ball-1</th>
+                                    <th scope="col">Ball-2</th>
+                                    <th scope="col">Ball-3</th>
+                                    <th scope="col">Ball-4</th>
+                                    <th scope="col">Ball-5</th>
+                                    <th scope="col">Ball-6</th>
+                                </tr>
+                            </thead>
+                            <tbody id="team1body">
+                                <!-- <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr> -->
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="col-2" id="scorearea">
+                <h1>timer</h1>
+                <h1>60</h1>
+                <button class="btn btn-primary" id="result">Generate Result</button>
+                <br>
+                <br>
+                <br>
+                <br>
+                <!-- <div id="resultsarea">
+                    <h3>Match won by</h3>
+                    <h3>Man of the Match </h3>
+
+                    <h3>Player score</h3>
+
+                    <h3>team </h3>
+
+                    <h3>Score</h3>
+
+                </div> -->
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="col-5" id="team2area">
+
+                <div class="row">
+                    <h1>Team 1 </h1>
+                    <h1>0</h1>
+                    <div id="countdown">ad</div>
+                    <button class="btn btn-primary" id="hitbtn2">HIT-1</button>
+
+                </div>
+
+                <div class="row">
+
+                    <h1>Team 1 ScorBoard </h1>
+
+                    <div class="table-responsive">
+                        <table class="table" id="team2table">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Ball-1</th>
+                                    <th scope="col">Ball-2</th>
+                                    <th scope="col">Ball-3</th>
+                                    <th scope="col">Ball-4</th>
+                                    <th scope="col">Ball-5</th>
+                                    <th scope="col">Ball-6</th>
+                                </tr>
+                            </thead>
+                            <tbody id="team2body">
+                                <!-- <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">player 1</th>
+                                    <td>player1</td>
+
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr> -->
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- <button class="btn btn-primary" id="hitbtn">HIT</button> -->
+        <script src="cricket.js"></script>
+
+</body>
+
+</html>
