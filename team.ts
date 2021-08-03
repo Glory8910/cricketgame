@@ -3,76 +3,87 @@ import { Game } from "./game";
 import { Player } from "./player";
 
 export class Team {
-    Teamscore: Number = 0;
+  Teamscore: number = 0;
 
-    name: String;
-    id: number;
+  name: String;
+  id: number;
 
-    Players: Array<Player> = []
+  Players: Array<Player> = []
 
-    currentPlayer: Player;
-    presentgame: Game;
-    p: number = 1;
+  currentPlayer: Player;
+  presentgame: Game;
+  p: number = 1;
+
+  highScoreOfPlayer: number = 0;
+  playerWithHighScore: String;
+
+  isturnover:boolean= false;
+
+
+
+
+  constructor(teamname: String, teamid: number, presentgameval) {
+
+    this.name = teamname;
+    this.id = teamid;
+    this.presentgame = presentgameval
+    console.log(this.name, this.id)
+
+    let newpl = new Player(`Player-${this.p}`, this.p, this)
+
+
+    this.Players.push(newpl)
+
+
+    this.currentPlayer = this.Players[0]
+    console.log("new team created", this.currentPlayer)
+
+
+  }
 
 
 
 
 
-    constructor(teamname: String, teamid: number, presentgameval) {
+  changePlayer() {
 
-        this.name = teamname;
-        this.id = teamid;
-        this.presentgame = presentgameval
-        console.log(this.name, this.id)
+    if (this.Players.length < 10) {
 
-        for (let p = 0; p < 10; p++) {
-            // this.Players.push(new Player(`Player-${this.p}`,this.p, this))
-            this.Players.push(new Player(`Player-${p}`,p, this))
 
-            this.currentPlayer = this.Players[0]
-            console.log("new team created", this.currentPlayer)
-        }
+      this.Teamscore = this.Teamscore + this.currentPlayer.PlayerScore
+      if (this.currentPlayer.PlayerScore > this.highScoreOfPlayer) {
+        this.highScoreOfPlayer = this.currentPlayer.PlayerScore
+        this.playerWithHighScore = this.currentPlayer.name
+      }
+
+      // document.getElementById(`highscore${this.id}`).innerHTML = `${this.highScoreOfPlayer}--${this.playerWithHighScore}`
+
+
+      // document.getElementById(`team${this.id}-score`).innerHTML = `${this.Teamscore}`
+
+      let playertobechanged = this.currentPlayer.id + 1;
+      console.log("new player is created", `Player-${playertobechanged}`, playertobechanged)
+      let newplayer = new Player(`Player-${playertobechanged}`, playertobechanged, this)
+
+
+      this.Players.push(newplayer)
+
+
+
+      this.currentPlayer = this.Players[playertobechanged - 1]
+
+      console.log(this.currentPlayer, playertobechanged)
+
+
+      return
 
     }
 
 
+  }
 
 
 
-    changePlayer() {
-
-
-        let playertobechanged=this.currentPlayer.id+1;
-
-        // this.Players.push(new Player(`Player-${playertobechanged}`,playertobechanged, this))
-        
-        console.log("new team created", this.currentPlayer)
-        this.currentPlayer=this.Players[playertobechanged-1]
-
-        console.log(this.currentPlayer,playertobechanged)
-
-        if(this.currentPlayer.id>=9){  
-            console.log(this.currentPlayer.id,"changing team")
-            this.presentgame.changeteam();
-        }
-
-
-        // if (this.id > 6) {
-        //     console.log("change team to anotheeeeeeeeeeeee ", "exceed player limit")
-        //     if (this.presentTeam < 1) {
-        //         console.log(this.presentTeam, "new team")
-        //         let newteam = new Team(`Team-${this.presentTeam + 1}`, this.presentTeam + 1)
-        //     }
-        //     else if (this.presentTeam > 1) {
-        //         console.log("exceed team limit", this.presentTeam)
-        //     }
-        // }
-        // else if (this.id < 6) {
-        //     console.log("new player is created", `Player-${this.id + 1}`, this.id + 1)
-        //     let newplayer = new Player(`Player-${this.id + 1}`, this.id + 1, this.presentTeam)
-
-
-        // }
-
-    }
 }
+
+

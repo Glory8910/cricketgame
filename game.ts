@@ -1,55 +1,212 @@
 import { Player } from "./player"
 import { Team } from "./team"
 
+export class Game {
 
-export class Game{
+    forcetimeroff: boolean = false;
+    i: number = 1
+    timerout: boolean = false;
+    currentTeam: Team;
 
-    Highscore:Number;
-    WinnerTeam:Team;
-    ManoftheMatch:Player;
-    TeamoftheManoftheMatch:Team;
-    ManoftheMatchScore:Number;
+    Teams: Array<Team> = []
+    downloadTimer: NodeJS.Timer;
 
-    i:number=1
-    
-    currentTeam:Team;
 
-    Teams:Array<Team>=[]
 
-    constructor(){
+    constructor() {
 
-      
-          for(let i=0;i<2;i++){
-            // this.Teams.push(new Team(`Team-${this.i}`,this.i,this))
-            this.Teams.push(new Team(`Team-${i}`,i,this))
 
-            this.currentTeam=this.Teams[0]
-            console.log("curr team",this.currentTeam,this.Teams,this)
-          }
-      
-    }
 
-  
-    changeteam(){
-       
+        this.Teams.push(new Team(`Team-${this.i}`, this.i, this))
+
+
+        this.currentTeam = this.Teams[0]
      
 
-        let teamtobechanged=this.currentTeam.id+1;
+    }
+
+
+
+
+
+    changeteam() {
+
+
+        if (this.Teams.length < 2) {
+
+
+            let teamtobechanged = this.currentTeam.id + 1;
+            this.currentTeam.isturnover = true;
         
-        // this.Teams.push(new Team(`Team-${teamtobechanged}`,teamtobechanged,this))
-            
+            let newteam = new Team(`Team-${teamtobechanged}`, teamtobechanged, this)
 
-        this.currentTeam=this.Teams[teamtobechanged-1]
+            this.Teams.push(newteam);
+            this.currentTeam = this.Teams[teamtobechanged - 1]
+            this.timerout = true;
 
-        console.log(this.currentTeam,teamtobechanged
-            )
+        
 
-        // let newteam=new Team(`Team-${this.id+1}`,this.id+1)
 
+         
+
+
+            return
+
+
+
+        }
+        else {
+            this.currentTeam.isturnover = true;
+            return
+        }
+    }
+
+
+    stoptimer() {
+
+        clearInterval(this.downloadTimer)
+
+
+        if (this.Teams.length == 2) {
+            document.getElementById("hit2btn").setAttribute("disabled", "disabled")
+
+        }
+        else {
+
+            this.changeteam()
+            this.currentTeam.isturnover=true;
+            document.getElementById("hit2btn").removeAttribute("disabled")
+            document.getElementById("hitbtn1").setAttribute("disabled", "disabled")
+
+
+        }
+        document.getElementById("timerarea").innerHTML = "0";
+
+    }
+
+    startTimer = () => {
+
+        let self = this;
+       
+        let timeleft = 60;
+        this.downloadTimer = setInterval(function () {
+
+            if (timeleft <= 0) {
+
+               
+
+
+                self.stoptimer();
+
+               
+
+            }
+            else {
+                document.getElementById("timerarea").innerHTML =` ${timeleft}`;
+
+
+
+            }
+
+
+            timeleft -= 1;
+
+
+        }, 1000);
 
     }
 
 
+
+    hitt1 = (<HTMLInputElement>document.getElementById("hitbtn1")).addEventListener("click", (e: MouseEvent) => {
+
+
+
+
+
+        if (this.currentTeam.Players.length >= 10 && this.currentTeam.currentPlayer.turnover) {
+         
+            clearInterval(this.downloadTimer)
+            document.getElementById("timerarea").innerHTML = "Finished";
+
+            this.changeteam()
+
+            this.forcetimeroff = true;
+
+
+
+
+
+
+            document.getElementById("hit2btn").removeAttribute("disabled")
+            document.getElementById("hitbtn1").setAttribute("disabled", "disabled")
+
+            return
+        }
+        else {
+          
+            this.currentTeam.currentPlayer.hit();
+
+            if (this.currentTeam.currentPlayer.id == 1 && this.currentTeam.currentPlayer.balls.length == 1) {
+                this.startTimer();
+                document.getElementById("hit2btn").setAttribute("disabled", "disabled")
+            }
+            return
+        }
+    })
+
+
+    hitt2 = (<HTMLInputElement>document.getElementById("hit2btn")).addEventListener("click", (e: MouseEvent) => {
+
+
+        if (this.currentTeam.Players.length >= 10 && this.currentTeam.currentPlayer.turnover) {
+
+
+            this.forcetimeroff = true;
+
+            clearInterval(this.downloadTimer)
+            document.getElementById("timerarea").innerHTML = "Finished";
+
+          
+
+
+            
+            document.getElementById("hit2btn").setAttribute("disabled", "disabled")
+
+            this.changeteam();
+            return
+        }
+        else {
+
+            this.currentTeam.currentPlayer.hit();
+
+            if (this.currentTeam.currentPlayer.id == 1 && this.currentTeam.currentPlayer.balls.length == 1) {
+                this.startTimer();
+                document.getElementById("hitbtn1").setAttribute("disabled", "disabled")
+            }
+            return
+        }
+    })
+
+
+    results = document.getElementById("result").addEventListener("click", () => {
+
+        if (this.Teams.length == 2 && this.currentTeam.isturnover) {
+
+
+         
+            if (this.Teams[0].Teamscore > this.Teams[1].Teamscore) {
+                document.getElementById("winteam").innerHTML = `${this.Teams[0].name}`
+
+                document.getElementById("winner").innerHTML = `${this.Teams[0].playerWithHighScore}`
+                document.getElementById("winteamscore").innerHTML = `${this.Teams[0].Teamscore}`
+                document.getElementById("winnerscore").innerHTML = `${this.Teams[0].highScoreOfPlayer}`
+
+
+            }
+
+        }
+    })
 
 }
 

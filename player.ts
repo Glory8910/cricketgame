@@ -14,7 +14,7 @@ export class Player {
     balls: Array<Number> = [];
     hitcount: number;
     presentTeam: Team;
-
+    turnover: boolean = false;
 
 
 
@@ -27,85 +27,72 @@ export class Player {
 
 
 
-        console.log("name", this.name, "id", this.id, "hitcount", this.hitcount, "balls arr", this.balls, "playing team", this.presentTeam)
-
-
-
 
     }
 
 
-    startTimer() {
 
-        document.getElementById("countdown").innerHTML = "ded"
-        var timeleft = 60;
-        var downloadTimer = setInterval(function () {
-            if (timeleft <= 0) {
-                clearInterval(downloadTimer);
-                document.getElementById("countdown").innerHTML = "Finished";
-
-
-            } else {
-                document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
-            }
-            timeleft -= 1;
-        }, 1000);
-
-
-    }
 
 
     hit() {
 
 
-
-
         let randval = Math.floor(Math.random() * 7)
-        // this.balls.length > 5
 
-        // randval == 0 ||
+        this.balls.push(randval)
+        this.PlayerScore=this.PlayerScore+randval;
+       
 
+        let tab=document.getElementById(`t${this.presentTeam.id}p${this.id}`)
+        let tabnext=document.createElement('td')
+        tabnext.id=`tdt${this.presentTeam.id}p${this.id}`
+    
+         tabnext.innerHTML=` ${randval}`
 
-        if (randval == 0 ) {
+         tab.appendChild(tabnext);
 
+         let tabtot=document.createElement('td')
+         tabtot.id=`tot${this.presentTeam.id}p${this.id}`
+         tabtot.innerHTML=`${this.PlayerScore}`
 
-            console.log(randval, this.balls.length, "changeplayer")
+     ;
 
+        if (randval == 0 || this.balls.length >= 6) {
 
+            if(this.balls.length<6){
+          
+                for(let j=this.balls.length;j<6;j++){
+                    // this.balls.push(0)
+                    let tabnextt=document.createElement('td')
+                    tabnextt.id=`tdt${this.presentTeam.id}p${this.id}`
+                  
+                     tabnextt.innerHTML=` ${randval}`
+            
+                     tab.appendChild(tabnextt);
+                }
+
+               
+            }
+        
+            this.turnover = true;
+            tab.appendChild(tabtot)
+          
+
+          
 
             this.presentTeam.changePlayer();
 
-                    return;
+            return
+
         }
-        else{
-
-            console.log(randval, this.balls.length)
-
-
-            this.balls.push(randval)
-    
-            this.PlayerScore = this.PlayerScore + randval;
-        }
-
-
-
-
-
-
-
-        // console.log(this.hitcount,"hitcount updated")
+        
+        return
 
     }
 
-    hitt = (<HTMLInputElement>document.getElementById("hitbtn1")).addEventListener("click", (e: MouseEvent) => {
-
-        console.log("hit",this.presentTeam.name)
-        this.hit();
 
 
 
-
-    })
 
 
 
